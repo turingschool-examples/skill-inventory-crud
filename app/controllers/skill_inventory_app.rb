@@ -44,8 +44,11 @@ class SkillInventoryApp < Sinatra::Base
   end
 
   def skill_inventory
-    database = YAML::Store.new('db/skill_inventory')
+    if ENV["RACK_ENV"] == "test"
+      database = YAML::Store.new('db/skill_inventory_test')
+    else
+      database = YAML::Store.new('db/skill_inventory')
+    end
     @skill_inventory ||= SkillInventory.new(database)
   end
-
 end

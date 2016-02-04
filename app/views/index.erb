@@ -2,7 +2,7 @@
   <h1>My Skills</h1>
 
   <% @skills.each do |skill| %>
-    <h3><%= skill.id %>: <a href="/skills/<%= skill.id %>"><%= skill.title %></a></h3>
+    <h3 id="skills"><%= skill.id %>: <a href="/skills/<%= skill.id %>"><%= skill.title %></a></h3>
     <a href="/skills/<%= skill.id %>/edit">Edit</a>
     <form class="" action="skills/<%= skill.id %>" method="post">
       <input type="hidden" name="_method" value="delete">
