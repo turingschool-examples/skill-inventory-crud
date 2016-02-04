@@ -1,6 +1,3 @@
-require_relative "skill"
-require "yaml/store"
-
 class SkillInventory
   attr_reader :database
 
@@ -13,7 +10,9 @@ class SkillInventory
       database['skills'] ||= []
       database['total']  ||= 0
       database['total']   += 1
-      database['skills']  << {"id" => database['total'], "title" => skill[:title], "description" => skill[:description]}
+      database['skills']  << {"id"          => database['total'],
+                              "title"       => skill[:title],
+                              "description" => skill[:description]}
     end
   end
 
@@ -46,6 +45,13 @@ class SkillInventory
   def delete(id)
     database.transaction do
       database['skills'].delete_if { |data| data["id"] == id }
+    end
+  end
+
+  def delete_all
+    database.transaction do
+      database['skills'] = []
+      database['total']  = 0
     end
   end
 end

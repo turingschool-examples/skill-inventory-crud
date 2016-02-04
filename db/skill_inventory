@@ -1,3 +1,6 @@
 ---
-skills: []
-total: 3
+skills:
+- id: 1
+  title: Coding
+  description: Can code stuff
+total: 1

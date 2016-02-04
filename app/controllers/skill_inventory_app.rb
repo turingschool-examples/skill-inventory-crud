@@ -1,9 +1,6 @@
-require "models/skill_inventory"
+require "yaml/store"
 
 class SkillInventoryApp < Sinatra::Base
-  set :root, File.join(File.dirname(__FILE__), '..')
-  set :method_override, true  # allows us to use _method in the form
-
   get '/' do
     erb :dashboard
   end
@@ -40,6 +37,10 @@ class SkillInventoryApp < Sinatra::Base
   delete '/skills/:id' do |id|
     skill_inventory.delete(id.to_i)
     redirect '/skills'
+  end
+
+  not_found do
+    erb :error
   end
 
   def skill_inventory
