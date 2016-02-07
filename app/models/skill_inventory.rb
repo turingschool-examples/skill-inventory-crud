@@ -5,33 +5,21 @@ class SkillInventory
     @database = database
   end
 
-  def create(skill)
-    database.transaction do
-      database['skills'] ||= []
-      database['total']  ||= 0
-      database['total']   += 1
-      database['skills']  << {"id"          => database['total'],
-                              "title"       => skill[:title],
-                              "description" => skill[:description]}
-    end
+  def dataset
+    database.from(:skills)
   end
 
-  def raw_skills
-    database.transaction do
-      database['skills'] || []
-    end
+  def create(skill)
+    dataset.insert(skill)
   end
 
   def all
-    raw_skills.map { |data| Skill.new(data) }
-  end
-
-  def raw_skill(id)
-    raw_skills.find { |skill| skill["id"] == id }
+    dataset.to_a.map { |data| Skill.new(data)  }
   end
 
   def find(id)
-    Skill.new(raw_skill(id))
+    data = dataset.where(:id => id).to_a.first
+    Skill.new(data)
   end
 
   def update(skill, id)

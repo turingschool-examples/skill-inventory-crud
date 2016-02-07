@@ -7,18 +7,23 @@ require 'capybara'
 require 'capybara/dsl'
 require 'tilt/erb'
 
-Capybara.app = SkillInventoryApp
+DatabaseCleaner[:sequel, {:connection => Sequel.sqlite("db/skill_inventory_test.sqlite3")}].strategy = :truncation
 
+Capybara.app = SkillInventoryApp
 Capybara.save_and_open_page_path = "tmp/capybara"
 
 module TestHelpers
+  def setup
+    DatabaseCleaner.start
+  end
+
   def teardown
-    skill_inventory.delete_all
+    DatabaseCleaner.clean
     super
   end
 
   def skill_inventory
-    database = YAML::Store.new('db/skill_inventory_test')
+    database = Sequel.sqlite("db/skill_inventory_test.sqlite3")
     @skill_inventory ||= SkillInventory.new(database)
   end
 end
