@@ -1,0 +1,17 @@
+<div class="container text-center">
+  <form action="/skills/<%= @skill.id %>" method="post">
+    <h1>Edit Skill</h1>
+    <input type="hidden" name="_method" value="put">
+    <div class="form-group">
+      <label for="skillTitle">Skill Title</label>
+      <input type='text' class="form-control" name="skill[title]" value="<%= @skill.title %>"/><br/>
+    </div>
+    <div class="form-group">
+      <label for="skillDescription">Skill Description</label>
+      <textarea name='skill[description]' class="form-control"><%= @skill.description %></textarea><br/>
+    </div>
+    <div class="form-group">
+      <input type='submit' value='submit' class="btn btn-primary"/>
+    </div>
+  </form>
+</div>
