@@ -1,0 +1,8 @@
+<h1>Is it a skill of mine?</h1>
+
+Yep I can do <%= @skill.name %>
+
+<form action="/skills/<%= @skill.name %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button>Delete this skill</button>
+</form>
