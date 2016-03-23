@@ -3,11 +3,12 @@ require_relative 'skill'
 require 'pry'
 
 class SkillInventory
+
   def self.database
     @database ||= YAML::Store.new("db/skill_inventory")
   end
 
-  def self.all
+  def self.all_names
     self.database
     @database.transaction do
       if @database['skills'].nil?
@@ -15,7 +16,7 @@ class SkillInventory
       else
         @database['skills'].map do |skill|
           skill.name
-        end.join(", ")
+        end
       end
     end
   end
@@ -24,7 +25,8 @@ class SkillInventory
     self.database
     @database.transaction do
       @database['skills'] ||= []
-      @database['skills'] << Skill.new(skill_info)
+      id = @database['skills'].last.id + 1
+      @database['skills'] << Skill.new(skill_info, id)
     end
   end
 
@@ -34,7 +36,7 @@ class SkillInventory
       @database['skills'].find { |skill| skill.name == name }
     end
     if result.nil?
-      "not that one"
+      Skill.new({}, 0)
     else
       result
     end
@@ -46,6 +48,7 @@ class SkillInventory
     @database.transaction do
       result = @database['skills'].find { |skill| skill.name == existing_skill_name}
       result.name = new_info[:name]
+      result.status = new_info[:status]
     end
   end
 

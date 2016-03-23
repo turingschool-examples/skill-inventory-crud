@@ -1,0 +1,18 @@
+---
+skills:
+- !ruby/object:Skill
+  name: breakfast
+  id: 1
+  status: eaten
+- !ruby/object:Skill
+  name: reading
+  id: 4
+  status: pretty good
+- !ruby/object:Skill
+  name: sleeping
+  id: 7
+  status: undisciplined
+- !ruby/object:Skill
+  name: wokring
+  id: 8
+  status: like a g

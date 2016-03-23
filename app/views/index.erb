@@ -1,3 +1,5 @@
 <h1>My Skills</h1>
 
-<%= @skills %>
+<% @skills.map do |skill_name| %>
+  <a href='/skills/<%= skill_name %>'><%= skill_name %></a>
+<% end %>

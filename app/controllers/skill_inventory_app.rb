@@ -13,7 +13,7 @@ class SkillInventoryApp < Sinatra::Base
   end
 
   get '/skills' do
-    @skills = SkillInventory.all
+    @skills = SkillInventory.all_names
     erb :index
   end
 
@@ -38,7 +38,7 @@ class SkillInventoryApp < Sinatra::Base
 
   put '/skills/:name' do |name|
     SkillInventory.update(params[:skill], name.to_s)
-    redirect '/skills'
+    redirect "/skills/#{name}"
   end
 
   delete '/skills/:name' do |name|
