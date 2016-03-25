@@ -5,19 +5,17 @@ require 'pry'
 class SkillInventory
 
   def self.database
-    @database ||= YAML::Store.new("db/skill_inventory")
+    if ENV['RACK_ENV'] == "test"
+      @database = YAML::Store.new('db/skill_inventory_test')
+    else
+      @database ||= YAML::Store.new("db/skill_inventory")
+    end
   end
 
-  def self.all_names
+  def self.all
     self.database
     @database.transaction do
-      if @database['skills'].nil?
-        "none"
-      else
-        @database['skills'].map do |skill|
-          skill.name
-        end
-      end
+      @database['skills']
     end
   end
 
@@ -25,15 +23,19 @@ class SkillInventory
     self.database
     @database.transaction do
       @database['skills'] ||= []
-      id = @database['skills'].last.id + 1
+      if @database["skills"] == []
+        id = 1
+      else
+        id = @database['skills'].last.id + 1
+      end
       @database['skills'] << Skill.new(skill_info, id)
     end
   end
 
-  def self.find(name)
+  def self.find(id)
     self.database
     result = @database.transaction do
-      @database['skills'].find { |skill| skill.name == name }
+      @database['skills'].find { |skill| skill.id == id }
     end
     if result.nil?
       Skill.new({}, 0)
@@ -43,21 +45,28 @@ class SkillInventory
   end
 
 
-  def self.update(new_info, existing_skill_name)
+  def self.update(new_info, existing_skill_id)
     self.database
     @database.transaction do
-      result = @database['skills'].find { |skill| skill.name == existing_skill_name}
+      result = @database['skills'].find { |skill| skill.id == existing_skill_id}
       result.name = new_info[:name]
       result.status = new_info[:status]
     end
   end
 
-  def self.delete(name)
+  def self.delete(id)
     self.database
     @database.transaction do
-      database['skills'].delete_if do |skill|
-        skill.name == name
+      @database['skills'].delete_if do |skill|
+        skill.id == id
       end
     end
   end
+
+  def self.delete_all
+    @database.transaction do
+      @database["skills"] = []
+    end
+  end
+
 end

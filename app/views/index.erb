@@ -1,5 +1,9 @@
 <h1>My Skills</h1>
 
-<% @skills.map do |skill_name| %>
-  <a href='/skills/<%= skill_name %>'><%= skill_name %></a>
+<% if @skills.nil? %>
+  <%= "There are no skills." %>
+<% else %>
+  <% @skills.map do |skill| %>
+    <a href='/skills/<%= skill.id %>'><%= skill.name %></a>
+  <% end %>
 <% end %>
