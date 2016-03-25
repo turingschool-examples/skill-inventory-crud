@@ -21,10 +21,6 @@ skills:
   id: 11
   status: asdfs
 - !ruby/object:Skill
-  name: New Peanut
-  id: 12
-  status: New status.
-- !ruby/object:Skill
   name: New Gizmo
   id: 13
   status: New status tested!
@@ -36,3 +32,7 @@ skills:
   name: Wow
   id: 15
   status: New status.
+- !ruby/object:Skill
+  name: checking
+  id: 16
+  status: great
