@@ -1,7 +1,10 @@
-require 'models/skill_inventory'
+require_relative '../models/skill_inventory'
+require 'sinatra'
+require 'pry'
 
 class SkillInventoryApp < Sinatra::Base
   set :root, File.join(File.dirname(__FILE__), '..')
+  set :server, 'webrick'
   set :method_override, true
 
   not_found do
@@ -13,7 +16,7 @@ class SkillInventoryApp < Sinatra::Base
   end
 
   get '/skills' do
-    @skills = SkillInventory.all_names
+    @skills = SkillInventory.all
     erb :index
   end
 
@@ -21,8 +24,8 @@ class SkillInventoryApp < Sinatra::Base
     erb :add
   end
 
-  get '/skills/:name' do |name|
-    @skill = SkillInventory.find(name.to_s)
+  get '/skills/:id' do |id|
+    @skill = SkillInventory.find(id.to_i)
     erb :skill
   end
 
@@ -31,18 +34,18 @@ class SkillInventoryApp < Sinatra::Base
     redirect '/skills'
   end
 
-  get '/skills/:name/edit' do |name|
-    @skill = SkillInventory.find(name.to_s)
+  get '/skills/:id/edit' do |id|
+    @skill = SkillInventory.find(id.to_i)
     erb :edit
   end
 
-  put '/skills/:name' do |name|
-    SkillInventory.update(params[:skill], name.to_s)
-    redirect "/skills/#{name}"
+  put '/skills/:id' do |id|
+    SkillInventory.update(params[:skill], id.to_i)
+    redirect "/skills/#{id}"
   end
 
-  delete '/skills/:name' do |name|
-    SkillInventory.delete(name.to_s)
+  delete '/skills/:id' do |id|
+    SkillInventory.delete(id.to_i)
     redirect '/skills'
   end
 end

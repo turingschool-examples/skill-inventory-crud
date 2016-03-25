@@ -5,12 +5,12 @@
 <% else %>
   Yep I can do <%= @skill.name %>. It has id <%= @skill.id %> and
   currently the status is "<%= @skill.status %>."<br>
-  <a href='/skills/<%= @skill.name %>/edit'>Edit this skill</a>
+  <a href='/skills/<%= @skill.id %>/edit'>Edit this skill</a>
 <% end %>
 
 
 
-<form action="/skills/<%= @skill.name %>" method="post">
+<form action="/skills/<%= @skill.id %>" method="post">
     <input type="hidden" name="_method" value="delete">
     <button>Delete this skill</button>
 </form>

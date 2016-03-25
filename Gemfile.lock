@@ -20,6 +20,7 @@ GEM
       tilt (~> 1.3, >= 1.3.4)
     slop (3.6.0)
     tilt (1.4.1)
+    webrick (1.3.1)
 
 PLATFORMS
   ruby
@@ -29,6 +30,7 @@ DEPENDENCIES
   pry
   shotgun
   sinatra
+  webrick
 
 BUNDLED WITH
    1.11.2
