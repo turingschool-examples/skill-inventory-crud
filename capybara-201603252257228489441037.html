@@ -23,7 +23,21 @@
     </div>
   </nav>
   <div class="container">
-  <%= yield %>
+  
+  <div class="divider"></div>
+  <div class="section">
+    <h1>Is it a skill of mine?</h1>
+    <p>Yep I can do Skill2. It has id 2 and currently the status is "Status 2."</p>
+  </div>
+  <div class="row">
+    <a class="waves-effect waves-light btn col s4" href='/skills/2/edit'><i class="material-icons right">input</i>Edit this Skill</a>
+    <form action="/skills/2" method="post">
+        <!-- <input type="hidden" name="_method" value="delete">
+        <button>Delete this skill</button> -->
+        <button class="btn waves-effect waves-light col s4 offset-s1" type="hidden" name="_method" value="delete"><i class="material-icons right">delete</i>Delete this Skill</button>
+    </form>
+  </div>
+
   </div>
   <!--Import jQuery before materialize.js-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

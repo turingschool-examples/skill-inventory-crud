@@ -5,7 +5,7 @@ class UserCanEditSkillTest < Minitest::Test
   include TestHelpers
   include Capybara::DSL
 
-  def test_user_can_create_new_skill
+  def test_user_edit_skill
     make_skills
 
     # user visits homepage
@@ -19,7 +19,7 @@ class UserCanEditSkillTest < Minitest::Test
     click_link("Skill3")
 
     # user clicks to edit
-    click_link("Edit this skill")
+    click_link("Edit this Skill")
 
     # user enters name of skill and status of skill
     assert current_path == "/skills/3/edit"
@@ -27,7 +27,7 @@ class UserCanEditSkillTest < Minitest::Test
     fill_in("skill[status]", :with => "New status.")
 
     # user clicks submit
-    click_on("Confirm edits")
+    click_on("Confirm Edits")
 
     # user sees new info in skill page
     assert current_path == "/skills/3"

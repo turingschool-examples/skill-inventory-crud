@@ -5,7 +5,7 @@ class UserCanDeleteSkillTest < Minitest::Test
   include TestHelpers
   include Capybara::DSL
 
-  def test_user_can_create_new_skill
+  def test_user_can_delete_skill
     make_skills
 
     # user visits homepage
@@ -16,14 +16,16 @@ class UserCanDeleteSkillTest < Minitest::Test
 
     # user clicks on title
     click_on("Skill2")
+    assert current_path == "/skills/2"
 
     # user clicks to delete
-    click_button("Delete this skill")
+    within "form" do
+      click_button("Delete this Skill")
+    end
 
     # user does not see title on /skills page
     assert current_path == "/skills"
     refute page.has_content?("Skill2")
-
   end
 
 end
