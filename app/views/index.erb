@@ -1,1 +1,20 @@
 <h1>My Skills</h1>
+
+<% if @skills.nil? %>
+  <%= "There are no skills." %>
+<% else %>
+  <div class="row">
+    <div class="col s12 m6">
+      <% @skills.map do |skill| %>
+        <a href="/skills/<%= skill.id %>">
+          <div class="card-panel small hoverable blue-grey darken-1 col s3">
+            <div class="white-text">
+              <span class="card-title"><%= skill.name %></span>
+            </div>
+          </div>
+        </a>
+        <div class="col s1"><p></p></div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
