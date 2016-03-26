@@ -1,7 +1,19 @@
-<form class="" action="/skills/<%= @skill.id %>" method="post">
+<div class="row">
   <h1>Edit skill "<%= @skill.name %>"</h1>
-  <input type="hidden" name="_method" value="put">
-  <input type="text" name="skill[name]" value="<%= @skill.name %>">
-  <input type="text" name="skill[status]" value="<%= @skill.status %>"><br>
-  <input type="submit" value="Confirm edits">
-</form>
+</div>
+<div class="row">
+  <form class="col s12" action="/skills/<%= @skill.id %>" method="post">
+    <input type="hidden" name="_method" value="put">
+    <div class="row">
+      <div class="input-field col s12">
+        <input value="<%= @skill.name %>" type="text" name="skill[name]">
+        <label for="Name">Name</label>
+      </div>
+      <div class="input-field col s12">
+        <input value="<%= @skill.status %>" type="text" name="skill[status]">
+        <label for="Status">Status</label>
+      </div>
+      <button class="btn waves-effect waves-light col s2 offset-s10" type="submit" name="action" value="Confirm Edits">Submit
+    </div>
+  </form>
+</div>

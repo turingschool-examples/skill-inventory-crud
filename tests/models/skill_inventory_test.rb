@@ -54,16 +54,14 @@ class SkillInventoryTest < Minitest::Test
   def test_can_delete_a_skill
     make_skills
 
-    skill = SkillInventory.find(1)
-
-    assert_equal "Skill1", skill.name
+    existing_skill = SkillInventory.find(1)
+    assert SkillInventory.all.any? { |skill| skill.id == existing_skill.id }
     assert_equal 4, SkillInventory.all.count
 
     SkillInventory.delete(1)
 
     deleted_skill = SkillInventory.find(1)
-
-    assert_equal nil, deleted_skill.name
+    refute SkillInventory.all.any? { |skill| skill.id == deleted_skill.id }
     assert_equal 3, SkillInventory.all.count
   end
 

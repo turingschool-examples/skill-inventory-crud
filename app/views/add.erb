@@ -1,5 +1,19 @@
-<form action="/skills" method="post">
-  <input type="skill" name="skill[name]" placeholder="Name of Skill">
-  <input type="skill" name="skill[status]" placeholder="Status of Skill">
-  <input type="submit" value="Create Skill"/>
-</form>
+
+<div class="row">
+  <p></p>
+</div>
+<div class="row">
+  <form class="col s12" action="/skills" method="post">
+    <div class="row">
+      <div class="input-field col s12">
+        <input placeholder="Enter the name of your new skill" type="text" name="skill[name]">
+        <label for="Name">Name</label>
+      </div>
+      <div class="input-field col s12">
+        <input placeholder="Enter the status of your new skill" type="text" name="skill[status]">
+        <label for="Status">Status</label>
+      </div>
+      <button class="btn waves-effect waves-light col s2 offset-s10" type="submit" name="action" value="Create Skill">Submit
+    </div>
+  </form>
+</div>

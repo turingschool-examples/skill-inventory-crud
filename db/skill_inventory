@@ -5,14 +5,6 @@ skills:
   id: 1
   status: eaten
 - !ruby/object:Skill
-  name: sleeping
-  id: 7
-  status: undisciplined
-- !ruby/object:Skill
-  name: testing
-  id: 9
-  status: important
-- !ruby/object:Skill
   name: Two Words
   id: 10
   status: two word test
@@ -21,18 +13,18 @@ skills:
   id: 11
   status: asdfs
 - !ruby/object:Skill
-  name: New Peanut
-  id: 12
-  status: New status.
-- !ruby/object:Skill
   name: New Gizmo
   id: 13
   status: New status tested!
 - !ruby/object:Skill
-  name: id
-  id: 14
-  status: number
-- !ruby/object:Skill
   name: Wow
   id: 15
   status: New status.
+- !ruby/object:Skill
+  name: working
+  id: 16
+  status: really great
+- !ruby/object:Skill
+  name: tbd
+  id: 17
+  status: 
