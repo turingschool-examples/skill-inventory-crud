@@ -6,7 +6,10 @@ class UserCanDeleteSkillTest < Minitest::Test
   include Capybara::DSL
 
   def test_user_can_delete_skill
+    SkillInventory.delete_all
     make_skills
+    skill = Skill.new(SkillInventory.database.from(:skills)[:name => "Skill2"])
+    id = skill.id
 
     # user visits homepage
     visit "/"
@@ -16,7 +19,7 @@ class UserCanDeleteSkillTest < Minitest::Test
 
     # user clicks on title
     click_on("Skill2")
-    assert current_path == "/skills/2"
+    assert current_path == "/skills/#{id}"
 
     # user clicks to delete
     within "form" do
@@ -26,6 +29,7 @@ class UserCanDeleteSkillTest < Minitest::Test
     # user does not see title on /skills page
     assert current_path == "/skills"
     refute page.has_content?("Skill2")
+    SkillInventory.delete_all
   end
 
 end

@@ -2,10 +2,13 @@ ENV['RACK_ENV'] ||= 'test'
 
 require_relative "../app/controllers/skill_inventory_app"
 require_relative "../app/models/skill_inventory"
+require_relative "../app/models/skill"
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'capybara/dsl'
 require 'tilt/erubis'
+require 'sqlite3'
+require 'sequel'
 
 Capybara.app = SkillInventoryApp
 

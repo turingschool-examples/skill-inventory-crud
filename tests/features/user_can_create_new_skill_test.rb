@@ -6,6 +6,7 @@ class UserCanCreateNewSkillTest < Minitest::Test
   include Capybara::DSL
 
   def test_user_can_create_new_skill
+    SkillInventory.delete_all
     make_skills
 
     # user visits homepage
@@ -36,6 +37,7 @@ class UserCanCreateNewSkillTest < Minitest::Test
     # user sees title and status
     assert page.has_content?("Wow")
     assert page.has_content?("New status.")
+    SkillInventory.delete_all
   end
 
 end
