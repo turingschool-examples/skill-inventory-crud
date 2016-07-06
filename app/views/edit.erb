@@ -1,0 +1,10 @@
+<form method="post" action="/skills/<%= @skill.id %>">
+  <input type="hidden" name="_method" value="put">
+  <header>
+    <a class="back btn btn-info" href="/skills/<%= @skill.id %>">Cancel</a>
+    <button class="btn btn-info" type="submit">Save</button>
+    <h2>Edit Skill</h2>
+  </header>
+  <p><input class="form-control" type="text" name="skill[name]" value="<%= @skill.name %>" placeholder="Name"></p>
+  <p><textarea class="form-control" name="skill[description]" placeholder="Description"><%= @skill.description %></textarea></p>
+</form>
