@@ -1,0 +1,29 @@
+.container {
+  max-width: 480px;
+}
+
+.btn {
+  float: right;
+}
+
+ol {
+  padding-left: 22px;
+}
+
+ol > li {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.back {
+  margin-right: 40px;
+  float: left;
+}
+
+header {
+  margin-bottom: 16px;
+}
+
+p {
+  font-size: 18px;
+}

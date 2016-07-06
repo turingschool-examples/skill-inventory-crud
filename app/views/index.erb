@@ -1,1 +1,16 @@
-<h1>My Skills</h1>
+<header>
+  <a class="btn btn-info" href="/skills/new">New</a>
+  <h2>Skills</h2>
+</header>
+
+<ol>
+  <% @skills.each do |skill| %>
+  <li>
+    <form action="/skills/<%= skill.id %>" method="post">
+      <a href="/skills/<%= skill.id %>"><%= skill.name %></a>
+      <input type="hidden" name="_method" value="delete">
+      <button class="btn btn-danger btn-xs" type="submit">Delete</button>
+    </form>
+  </li>
+  <% end %>
+</ol>
